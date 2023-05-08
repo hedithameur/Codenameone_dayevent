@@ -23,6 +23,7 @@ import com.codename1.io.NetworkManager;
 import com.mycomany.utils.Statics;
 import com.codename1.charts.renderers.DefaultRenderer;
 import com.codename1.charts.renderers.SimpleSeriesRenderer;
+import com.codename1.charts.util.ColorUtil;
 import com.codename1.components.SpanLabel;
 import com.codename1.ui.Button;
 import com.codename1.ui.Component;
@@ -52,77 +53,66 @@ public class StatistiquePieForm extends BaseForm {
     }
  
 
-    public void affichageStats() {
-        String url = Statics.BASE_URL + "/stats";
-        ConnectionRequest req = new ConnectionRequest();
-        req.setUrl(url);
-        req.setHttpMethod("GET");
+public void affichageStats() {
+    String url = Statics.BASE_URL + "/stats";
+    ConnectionRequest req = new ConnectionRequest();
+    req.setUrl(url);
+    req.setHttpMethod("GET");
 
-        req.addResponseListener(e -> {
-            JSONParser jsonParser = new JSONParser();
-            try {
-                // Analyser la réponse JSON
-                Map<String, Object> response = jsonParser.parseJSON(new InputStreamReader(new ByteArrayInputStream(req.getResponseData()), "UTF-8"));
+    req.addResponseListener(e -> {
+        JSONParser jsonParser = new JSONParser();
+        try {
+            // Analyser la réponse JSON
+            Map<String, Object> response = jsonParser.parseJSON(new InputStreamReader(new ByteArrayInputStream(req.getResponseData()), "UTF-8"));
 
-                // Récupérer les données de statistiques
-                List<Map<String, Object>> stats = (List<Map<String, Object>>) response.get("root");
-    List<String> artistNames = new ArrayList<>();
-                // Créer le modèle de données pour le graphique pie chart
-                CategorySeries dataset = new CategorySeries("");
-                for (Map<String, Object> stat : stats) {
-                    String label = (String) stat.get("nomArtiste");
-  int count = ((Number) stat.get("nombreMusiques")).intValue();
-    dataset.add(label, count);
-             String artistName = (String) stat.get("nomArtiste");
-        artistNames.add(artistName);
-                }
+            // Récupérer les données de statistiques
+            List<Map<String, Object>> stats = (List<Map<String, Object>>) response.get("root");
 
-                // Créer le graphique pie chart
-                  DefaultRenderer renderer = new DefaultRenderer();
-    Random rand = new Random();
-    for (int i = 0; i < dataset.getItemCount(); i++) {
-        SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
-        seriesRenderer.setColor(rand.nextInt());
-        renderer.addSeriesRenderer(seriesRenderer);
-    }
-
-
-                PieChart chart = new PieChart(dataset, renderer);
-        
-                ChartComponent c  = new ChartComponent(chart);
-        
-     String[] messages = {
-    "Statistique les artistes qui ont plus musiques "
-};
-
-SpanLabel message = new SpanLabel(messages[0], "WelcomeMessage");
-
-Container cnt = BorderLayout.center(message);
-cnt.setUIID("Container");
-addComponent(BorderLayout.NORTH, cnt);
-addComponent(BorderLayout.CENTER, c);
-
-               
-
-                // Afficher le graphique dans un composant ChartComponent
-                ChartComponent chartComponent = new ChartComponent(chart);
-                addComponent(BorderLayout.CENTER, chartComponent);
-                revalidate();
-                
-           //colors set:
-        
-
-     //   PieChart chart = new PieChart(dataset, renderer);
-
-
-
-            } catch (Exception ex) {
-                ex.printStackTrace();
+            // Créer le modèle de données pour le graphique pie chart
+            CategorySeries dataset = new CategorySeries("");
+            for (Map<String, Object> stat : stats) {
+                String artistName = (String) stat.get("nomArtiste");
+                int count = ((Number) stat.get("nombreMusiques")).intValue();
+                dataset.add(artistName, count);
             }
-        });
 
-        NetworkManager.getInstance().addToQueue(req);
-    }
+            // Créer le rendu par défaut du graphique pie chart
+            DefaultRenderer renderer = new DefaultRenderer();
+            renderer.setLabelsTextSize(45);
+            renderer.setLegendTextSize(45);
+            renderer.setMargins(new int[]{20, 30, 15, 0});
+            renderer.setShowLabels(true); // Afficher les valeurs dans le graphique
+            renderer.setLabelsColor(ColorUtil.BLACK); // Couleur du texte des valeurs
+
+            // Ajouter les couleurs aléatoires au rendu du graphique
+            for (int i = 0; i < dataset.getItemCount(); i++) {
+                SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
+                seriesRenderer.setColor(generateRandomColor());
+                renderer.addSeriesRenderer(seriesRenderer);
+            }
+
+            // Créer le graphique pie chart
+            PieChart chart = new PieChart(dataset, renderer);
+            ChartComponent chartComponent = new ChartComponent(chart);
+
+            // Afficher le graphique dans un composant ChartComponent
+            this.setLayout(new BorderLayout());
+            this.add(BorderLayout.CENTER, chartComponent);
+            this.revalidate();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    });
+
+    NetworkManager.getInstance().addToQueue(req);
+}
+
+private int generateRandomColor() {
+    Random rand = new Random();
+    return rand.nextInt();
+}
+
       public DefaultRenderer buildCatRendrer(int []colors) {
         
         DefaultRenderer renderer = new DefaultRenderer();
