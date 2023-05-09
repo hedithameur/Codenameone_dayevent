@@ -162,6 +162,8 @@ public class AjouterEvent extends BaseForm{
         date.setUIID("TextFieldBlack");
         addStringValue("date",date);
         
+        
+        
         TextField nb_ticket = new TextField("", "entrer nb_ticket!!");
         nb_ticket.setUIID("TextFieldBlack");
         addStringValue("nb_ticket",nb_ticket);
