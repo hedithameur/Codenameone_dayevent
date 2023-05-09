@@ -93,7 +93,10 @@ public class ServiceEvent {
 
              float prixFloat = Float.parseFloat(obj.get("prix").toString());
                 int prix = (int) prixFloat;
-
+                
+                String dateString = "2023-05-09"; // the string from the database
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //Date date = dateFormat.parse(dateStr);
 
                 evenement.setId((int) id);
                 evenement.setNom(nom);
@@ -103,7 +106,7 @@ public class ServiceEvent {
                 evenement.setPrix(prix);
 
                 // Parse the date
-    String dateStr1 = obj.get("date").toString();
+ /*   String dateStr1 = obj.get("date").toString();
 String dateConverter = "";
 if (dateStr1.contains("timestamp")) {
     dateConverter = dateStr1.substring(dateStr1.indexOf("timestamp") + 10, dateStr1.lastIndexOf("}"));
@@ -112,8 +115,8 @@ if (dateStr1.contains("timestamp")) {
 }
 Date date = new Date(Double.valueOf(dateConverter).longValue() * 1000);
 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-String dateString = formatter.format(date);
-evenement.setDate(dateString);
+String dateString = formatter.format(date);*/
+evenement.setDate(dateStr);
 
 
 

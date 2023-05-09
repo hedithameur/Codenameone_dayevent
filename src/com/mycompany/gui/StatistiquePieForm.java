@@ -68,8 +68,9 @@ public class StatistiquePieForm extends BaseForm {
     private boolean drawOnMutableImage;
    
     
-    private double nbr_feedback = 45;
-    private double nbr_reclamation = 29;
+    private double Hammamet = 2;
+    private double Tunis = 1;
+    private double Sousse = 1;
    
     Form current;
 BaseForm form;
@@ -90,7 +91,7 @@ BaseForm form;
 
         Label spacer1 = new Label();
         Label spacer2 = new Label();
-        addTab(swipe, res.getImage("back-logo.jpeg"), spacer1, "Bienvenue");
+        addTab(swipe, res.getImage("back-logo.jpeg"), spacer1, "Statistique");
                 
         swipe.setUIID("Container");
         swipe.getContentPane().setUIID("Container");
@@ -132,47 +133,11 @@ BaseForm form;
         
         ButtonGroup barGroup = new ButtonGroup();
         
-        RadioButton all = RadioButton.createToggle("Feedback", barGroup);
-       
-        all.setUIID("SelectBar");
-        RadioButton popular = RadioButton.createToggle("Categorie Reclamation", barGroup);
-        popular.setUIID("SelectBar");
-        RadioButton feedback = RadioButton.createToggle("Feedback", barGroup);
-        feedback.setUIID("SelectBar");
-        RadioButton profile = RadioButton.createToggle("Statistique", barGroup);
-        profile.setUIID("SelectBar");
-        Label arrow = new Label(res.getImage("news-tab-down-arrow.png"), "Container");
         
-        add(LayeredLayout.encloseIn(
-                GridLayout.encloseIn(3, all, popular,profile),
-                FlowLayout.encloseBottom(arrow)
-        ));
-        all.setSelected(true);
-        arrow.setVisible(false);
-        addShowListener(e -> {
-            arrow.setVisible(true);
-            updateArrowPosition(all, arrow);
-           
-        });
-        bindButtonSelection(all, arrow);
-        bindButtonSelection(popular, arrow);
-                all.addActionListener((e)->{
-        });
-
-                 popular.setSelected(true);
-        arrow.setVisible(false);
-        addShowListener(e -> {
-            arrow.setVisible(true);
-            updateArrowPosition(profile, arrow);
-        });
-        bindButtonSelection(profile, arrow);
-                profile.addActionListener((e)->{
-                  new StatistiquePieForm(res).show();
-                  
-        });
+      
         // special case for rotation
         addOrientationListener(e -> {
-            updateArrowPosition(barGroup.getRadioButton(barGroup.getSelectedIndex()), arrow);
+            //updateArrowPosition(barGroup.getRadioButton(barGroup.getSelectedIndex()), arrow);
         });
     
         
@@ -240,13 +205,13 @@ BaseForm form;
                        ta
                ));
        
-       image.addActionListener(e -> {
+      /* image.addActionListener(e -> {
            try{
            new AjoutReclamationForm(Resources.getGlobalResources()).show();
            }catch(Exception exx) {
                
-           }
-               });
+           }*/
+              
         add(cnt);
         image.addActionListener(e -> ToastBar.showMessage(title, FontImage.MATERIAL_INFO));
    }
@@ -281,15 +246,17 @@ BaseForm form;
     public void createPieChartForm() {
         
         //chna3ml stat feedback par rapport l reclamation 
-        double total = nbr_feedback + nbr_reclamation;
+        double total = Hammamet + Tunis + Sousse ;
         
         //values
-        double prcntFeed = (nbr_feedback *100)/total;
+        double prcntHam = (Hammamet *100)/total;
         
-        double prcntRec = (nbr_reclamation * 100)/total;
+        double prcntTun = (Tunis * 100)/total;
+        
+        double prcntSou = (Sousse * 100)/total;
         
         //colors set:
-        int[]colors = new int[]{0xf4b342, 0x52b29a};
+        int[]colors = new int[]{0xf4b342, 0x52b29a, 0xf4b399};
         
         DefaultRenderer renderer = buildCatRendrer(colors);
         renderer.setLabelsColor(0x000000); // black color for labels.
@@ -304,13 +271,13 @@ BaseForm form;
         r.setHighlighted(true);
         
         //CREATe the chart ...
-        PieChart chart = new PieChart(buildDataset("title",Math.round(prcntFeed),Math.round(prcntRec)), renderer);
+        PieChart chart = new PieChart(buildDataset("title",Math.round(prcntHam),Math.round(prcntSou),Math.round(prcntTun)), renderer);
         
         // n7oto chart fi component
         ChartComponent c  = new ChartComponent(chart);
         
         String []messages = {
-            "Statistique feedback % reclamations"
+            "% des Villes qui a le plus d'events"
         };
         
         SpanLabel message = new SpanLabel(messages[0], "WelcomeMessage");
@@ -323,13 +290,13 @@ BaseForm form;
                 
     }
 
-    private CategorySeries buildDataset(String title, double prcntFeed, double prcntRec) {
+    private CategorySeries buildDataset(String title, double prcntHam, double prcntSou, double prcntTun) {
         
         CategorySeries series = new CategorySeries(title);
         
-        series.add("Reclamation",prcntRec);
-        series.add("Feedback",prcntFeed);
-        
+        series.add("Hammamet",prcntHam);
+        series.add("Sousse",prcntSou);
+        series.add("Tunis",prcntTun);
         return series;
     }
 

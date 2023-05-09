@@ -13,12 +13,11 @@ import com.codename1.ui.Toolbar;
 import java.io.IOException;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.io.NetworkEvent;
-import com.mycompany.gui.AjoutReclamationForm;
+
 import com.mycompany.gui.AjouterEvent;
 import com.mycompany.gui.ListeEvent;
-import com.mycompany.gui.MapForm;
-import com.mycompany.gui.SignInForm;
-import com.mycompany.gui.SignUpForm;
+
+
 import com.mycompany.gui.StatistiquePieForm;
 
 /**
@@ -62,6 +61,7 @@ public class MyApplication {
        // new MapForm(); //n7oto signup bch yjibha awl form
         //new AjouterEvent(theme).show();
          new ListeEvent(theme).show();
+         //new StatistiquePieForm(theme).show();
     }
 
     public void stop() {

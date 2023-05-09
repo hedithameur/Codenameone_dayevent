@@ -33,12 +33,15 @@ import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
+import com.codename1.ui.spinner.Picker;
 import com.codename1.ui.util.Resources;
 import com.mycomany.entities.Evenement;
 
 import com.mycompany.services.ServiceEvent;
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
+
 
 /**
  *
@@ -46,6 +49,8 @@ import java.util.Date;
  */
 public class AjouterEvent extends BaseForm{
      Form current;
+     String dateString;
+        Date date;
     public AjouterEvent(Resources res ) {
         super("Newsfeed",BoxLayout.y()); //herigate men Newsfeed w l formulaire vertical
     
@@ -53,9 +58,9 @@ public class AjouterEvent extends BaseForm{
         current = this ;
         setToolbar(tb);
         getTitleArea().setUIID("Container");
-        setTitle("Ajout Reclamation");
+        setTitle("Ajout Evenement");
         getContentPane().setScrollVisible(false);
-        
+         super.addSideMenu(res);
         
         tb.addSearchCommand(e ->  {
             
@@ -108,43 +113,7 @@ public class AjouterEvent extends BaseForm{
         Component.setSameSize(radioContainer, s1, s2);
         add(LayeredLayout.encloseIn(swipe, radioContainer));
 
-        ButtonGroup barGroup = new ButtonGroup();
-        RadioButton mesListes = RadioButton.createToggle("Mes Reclamations", barGroup);
-        mesListes.setUIID("SelectBar");
-        RadioButton liste = RadioButton.createToggle("Autres", barGroup);
-        liste.setUIID("SelectBar");
-        RadioButton partage = RadioButton.createToggle("Reclamer", barGroup);
-        partage.setUIID("SelectBar");
-        Label arrow = new Label(res.getImage("news-tab-down-arrow.png"), "Container");
-
-
-        mesListes.addActionListener((e) -> {
-               InfiniteProgress ip = new InfiniteProgress();
-        final Dialog ipDlg = ip.showInifiniteBlocking();
-        
-        //  ListReclamationForm a = new ListReclamationForm(res);
-          //  a.show();
-            refreshTheme();
-        });
-
-        add(LayeredLayout.encloseIn(
-                GridLayout.encloseIn(3, mesListes, liste, partage),
-                FlowLayout.encloseBottom(arrow)
-        ));
-
-        partage.setSelected(true);
-        arrow.setVisible(false);
-        addShowListener(e -> {
-            arrow.setVisible(true);
-            updateArrowPosition(partage, arrow);
-        });
-        bindButtonSelection(mesListes, arrow);
-        bindButtonSelection(liste, arrow);
-        bindButtonSelection(partage, arrow);
-        // special case for rotation
-        addOrientationListener(e -> {
-            updateArrowPosition(barGroup.getRadioButton(barGroup.getSelectedIndex()), arrow);
-        });
+       
 
         
         //
@@ -157,10 +126,28 @@ public class AjouterEvent extends BaseForm{
         TextField lieu = new TextField("", "entrer lieu!!");
         lieu.setUIID("TextFieldBlack");
         addStringValue("lieu",lieu);
-        
+      /*  
         TextField date = new TextField("", "entrer date!!");
         date.setUIID("TextFieldBlack");
-        addStringValue("date",date);
+        addStringValue("date",date);*/
+      Picker datePicker = new Picker();
+datePicker.setType(Display.PICKER_TYPE_DATE);
+datePicker.setUIID("TextFieldBlack");
+addStringValue("datePicker", datePicker);
+System.out.println(datePicker);
+
+datePicker.addActionListener((e) -> {
+     date = datePicker.getDate();
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    dateString = formatter.format(date);
+    System.out.println(dateString);
+});
+ 
+
+
+
+     
+
         
         
         
@@ -184,7 +171,11 @@ public class AjouterEvent extends BaseForm{
         Button btnAjouter = new Button("Ajouter");
         addStringValue("", btnAjouter);
         
-        
+
+
+
+// Compare the LocalDate to today's date
+
         //onclick button event 
 
         btnAjouter.addActionListener(new ActionListener() {
@@ -192,10 +183,16 @@ public class AjouterEvent extends BaseForm{
             public void actionPerformed(ActionEvent e) {
                 try {
                     
-                    if(nom.getText().equals("") || lieu.getText().equals("")) {
-                        Dialog.show("Veuillez vérifier les données","","Annuler", "OK");
+                    if(nom.getText().equals("") ||nb_ticket.getText().equals("") || prix.getText().equals("") || lieu.getText().equals("")|| affiche.getText().equals("")) {
+                        Dialog.show("Veuillez vérifier un ou plusieur champs sont vides","","Annuler", "OK");
                     }
                     
+                    else if (nom.getText().length() < 5)
+                    {
+                         Dialog.show("Le nom d'event doit contenir au moins 5 caractères","","Annuler", "OK");
+                    }
+                    
+                   
                     else {
                         InfiniteProgress ip = new InfiniteProgress();; //Loading  after insert data
                         
@@ -209,7 +206,7 @@ public class AjouterEvent extends BaseForm{
                         //njibo iduser men session (current user)
                         Evenement r = new Evenement(nom.getText(),
                                 lieu.getText(),
-                                date.getText(),
+                                dateString,
                                nbTicketInt,
                                prixInt,
                                 affiche.getText());

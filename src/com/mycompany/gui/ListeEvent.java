@@ -39,7 +39,7 @@ import com.codename1.ui.util.Resources;
 import com.mycomany.entities.Evenement;
 import com.mycomany.entities.Reclamation;
 import com.mycompany.services.ServiceEvent;
-import com.mycompany.services.ServiceReclamation;
+
 import java.util.ArrayList;
 /**
  *
@@ -55,7 +55,7 @@ public class ListeEvent extends BaseForm{
         getTitleArea().setUIID("Container");
         setTitle("Day Event Events");
         getContentPane().setScrollVisible(false);
-        
+        super.addSideMenu(res);
         
         tb.addSearchCommand(e ->  {
             
@@ -112,43 +112,7 @@ public class ListeEvent extends BaseForm{
         Component.setSameSize(radioContainer, s1, s2);
         add(LayeredLayout.encloseIn(swipe, radioContainer));
 
-        ButtonGroup barGroup = new ButtonGroup();
-        RadioButton mesListes = RadioButton.createToggle("Mes Reclamations", barGroup);
-        mesListes.setUIID("SelectBar");
-        RadioButton liste = RadioButton.createToggle("Autres", barGroup);
-        liste.setUIID("SelectBar");
-        RadioButton partage = RadioButton.createToggle("Reclamer", barGroup);
-        partage.setUIID("SelectBar");
-        Label arrow = new Label(res.getImage("news-tab-down-arrow.png"), "Container");
-
-
-        mesListes.addActionListener((e) -> {
-               InfiniteProgress ip = new InfiniteProgress();
-        final Dialog ipDlg = ip.showInifiniteBlocking();
         
-        //  ListReclamationForm a = new ListReclamationForm(res);
-          //  a.show();
-            refreshTheme();
-        });
-
-        add(LayeredLayout.encloseIn(
-                GridLayout.encloseIn(3, mesListes, liste, partage),
-                FlowLayout.encloseBottom(arrow)
-        ));
-
-        partage.setSelected(true);
-        arrow.setVisible(false);
-        addShowListener(e -> {
-            arrow.setVisible(true);
-            updateArrowPosition(partage, arrow);
-        });
-        bindButtonSelection(mesListes, arrow);
-        bindButtonSelection(liste, arrow);
-        bindButtonSelection(partage, arrow);
-        // special case for rotation
-        addOrientationListener(e -> {
-            updateArrowPosition(barGroup.getRadioButton(barGroup.getSelectedIndex()), arrow);
-        });
         
       
         //Appel affichage methode
@@ -252,9 +216,8 @@ public class ListeEvent extends BaseForm{
         Label dateTxt = new Label("Date : "+rec.getDate(),"NewsTopLine2");
         Label etatTxt = new Label("Lieu : "+rec.getLieu(),"NewsTopLine2" );
         Label nbTxt = new Label("Tickets dispo : "+rec.getNb_ticket(),"NewsTopLine2" );
-        Label prixTxt = new Label("Tickets dispo : "+rec.getPrix(),"NewsTopLine2" );
-        createLineSeparator();
-        
+        Label prixTxt = new Label("Prix Ticket : "+rec.getPrix(),"NewsTopLine2" );
+        Label sep = new Label("-----------------------------------------------");
       
        
         
@@ -307,7 +270,8 @@ lSupprimer.addPointerPressedListener(l -> {
                 BoxLayout.encloseX(dateTxt),
                 BoxLayout.encloseX(etatTxt),
                 BoxLayout.encloseX(nbTxt),
-                BoxLayout.encloseX(prixTxt)));
+                BoxLayout.encloseX(prixTxt),
+                BoxLayout.encloseX(sep)));
         
         
         add(cnt);
