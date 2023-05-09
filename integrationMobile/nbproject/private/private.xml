@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/entities/Reclamation.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/services/Servicecategorie.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/AjoutTicketForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/ModifierTicketForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/services/ServiceUtilisateur.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/WalkthruForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/NewsfeedForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/ModifierReclamationForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/ListCategorieForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/BaseForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/services/ServiceTicket.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/entities/Ticket.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/services/ServiceMusic.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/AjoutRMusicForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/GlobalForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/MyApplication.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/ActivateForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/ListReclamationForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/ListMusicForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/StatistiquePieForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/ListTicketForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/AjoutCategorie.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/entities/Music.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/SignInForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/SessionManager.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/SignUpForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/entities/Categorie.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/ProfileForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/MapForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/services/ServiceReclamation.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/entities/Utilisateur.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/ModifierMusicForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/gui/AjoutReclamationForm.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/integrationMobile/src/edu/esprit/utils/Statics.java</file>
+        </group>
+    </open-files>
+</project-private>

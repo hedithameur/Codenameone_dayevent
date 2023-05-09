@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Mobile_Ghalya">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/Mobile_Ghalya.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
