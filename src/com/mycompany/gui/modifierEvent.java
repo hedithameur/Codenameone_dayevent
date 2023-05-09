@@ -33,14 +33,19 @@ public class modifierEvent extends BaseForm {
         current = this ;
         setToolbar(tb);
         getTitleArea().setUIID("Container");
-        setTitle("Ajout Reclamation");
+        setTitle("DAY EVENT EVENTS");
         getContentPane().setScrollVisible(false);
         
         
         super.addSideMenu(res);
         
-        TextField objet = new TextField(r.getNom() , "Objet" , 20 , TextField.ANY);
-        TextField description = new TextField(r.getLieu() , "Description" , 20 , TextField.ANY);
+        TextField Nom = new TextField(r.getNom() , "Nom" , 20 , TextField.ANY);
+        TextField Lieu = new TextField(r.getLieu() , "Lieu" , 20 , TextField.ANY);
+        TextField Date = new TextField(r.getDate(), "Date" , 20 , TextField.ANY);
+        TextField nb = new TextField(String.valueOf(r.getNb_ticket()), "nb", 20, TextField.ANY);
+        TextField p = new TextField(String.valueOf(r.getPrix()), "p", 20, TextField.ANY);
+        
+        
            //    TextField etat = new TextField(String.valueOf(r.getEtat()) , "Etat" , 20 , TextField.ANY);
  
         //etat bch na3mlo comobbox bon lazm admin ya3mlleha approuver mais just chnwarikom ComboBox
@@ -49,12 +54,19 @@ public class modifierEvent extends BaseForm {
         
         
         
-        objet.setUIID("NewsTopLine");
-        description.setUIID("NewsTopLine");
+        Nom.setUIID("NewsTopLine");
+        Lieu.setUIID("NewsTopLine");
+        Date.setUIID("NewsTopLine");
+        nb.setUIID("NewsTopLine");
+        p.setUIID("NewsTopLine");
        // etat.setUIID("NewsTopLine");
         
-        objet.setSingleLineTextArea(true);
-        description.setSingleLineTextArea(true);
+        Nom.setSingleLineTextArea(true);
+        Lieu.setSingleLineTextArea(true);
+        Date.setSingleLineTextArea(true);
+        nb.setSingleLineTextArea(true);
+        p.setSingleLineTextArea(true);
+        
        // etat.setSingleLineTextArea(true);
         
         Button btnModifier = new Button("Modifier");
@@ -64,8 +76,12 @@ public class modifierEvent extends BaseForm {
        
        btnModifier.addPointerPressedListener(l ->   { 
            
-           r.setNom(objet.getText());
-           r.setLieu(description.getText());
+           r.setNom(Nom.getText());
+           r.setLieu(Lieu.getText());
+           r.setDate(Date.getText());
+           r.setNb_ticket(Integer.valueOf(nb.getText()));
+           r.setPrix(Integer.valueOf(p.getText()));
+           
            
           
        
@@ -93,9 +109,15 @@ public class modifierEvent extends BaseForm {
         
         Container content = BoxLayout.encloseY(
                 l1, l2, 
-                new FloatingHint(objet),
+                new FloatingHint(Nom),
                 createLineSeparator(),
-                new FloatingHint(description),
+                new FloatingHint(Lieu),
+                createLineSeparator(),
+                new FloatingHint(Date),
+                createLineSeparator(),
+                new FloatingHint(nb),
+                createLineSeparator(),
+                new FloatingHint(p),
                 createLineSeparator(),
                // etatCombo,
                 createLineSeparator(),//ligne de séparation

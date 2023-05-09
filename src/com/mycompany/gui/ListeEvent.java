@@ -53,7 +53,7 @@ public class ListeEvent extends BaseForm{
         current = this ;
         setToolbar(tb);
         getTitleArea().setUIID("Container");
-        setTitle("Ajout Reclamation");
+        setTitle("Day Event Events");
         getContentPane().setScrollVisible(false);
         
         
